@@ -1,0 +1,1090 @@
+<config>
+
+	<!-- ************************************************************************* -->
+	<!-- ********************* PERSON DOCUMENT SEARCH (ALL) ********************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="all-member-virtual-folder" label="Person Document Search (All)"
+		description="Search for person documents (all)" searchType="oneSearchStage">
+
+		<form label="Member Search" descriptionId="Search for members"
+			horizontalOrSeparator="true" verticalOrSeparator="true"
+			nextSearchStage="stageOne" resultingFormId="Person search resulting form"
+			url="/external/GetPersonDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="DatabaseMemberID" label="Admin ID" description="Admin ID Field"
+				fieldType="int" fillUnique="true" fillFieldName="SchemeType"
+				fillFieldValue="Admin" />
+
+			<field name="DatabaseMemberID" label="Payroll ID" description="Payroll ID Field"
+				fieldPosition="upRight" fieldType="int" fillUnique="true"
+				fillFieldName="SchemeType" fillFieldValue="Payroll" />
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="downLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="Surname" label="Surname" description="Surname Field"
+				fieldPosition="downLeft" />
+
+			<field name="FirstName" label="First Name" descriptionId="First Name Field"
+				fieldPosition="downLeft" />
+
+			<field name="NINumber" label="NI Number" description="Ni Number Field"
+				fieldPosition="downLeft" />
+
+			<field name="DateOfBirth" show="false" submitValue="null" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" show="false" submitValue="null" />
+		</form>
+
+		<searchStage id="stageOne" label="Select a person: "
+			description="Select a person Table" url="/psdoc/search/all-member-virtual-folder"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" sortable="true"
+				submit="false" />
+
+			<field name="FirstName" label="First name" sortable="true"
+				submit="false" />
+
+			<field name="Surname" label="Surname" submit="false" />
+
+			<field name="NINumber" label="NI Number" submit="false" />
+
+			<field name="DateOfBirth" label="Date Of Birth" format="date"
+				submit="false" />
+
+			<field name="CentralMemberRecordID" label="Central Member record ID"
+				format="number" />
+
+			<field name="BenefitStatus" show="false" submit="false" />
+
+			<field name="BenefitSubStatus" show="false" submit="false" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="DatabaseMemberID" show="false" format="number"
+				submit="false" />
+
+			<field name="DateJoinedScheme" show="false" format="date"
+				submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeName" show="false" submit="false" />
+
+			<field name="SchemeType" show="false" submit="false" />
+		</searchStage>
+
+		<resultingForm id="Person search resulting form" label="Member Search">
+
+			<field name="ClientName" label="Client Name" />
+
+			<field name="Surname" label="Surname" />
+
+			<field name="FirstName" label="First Name" />
+
+			<field name="NINumber" label="NI Number" />
+
+		</resultingForm>
+
+		<finalSearchStage label="Search Results" description="Search Results">
+
+			<field name="psdoc:docDate" label="Document Date" format="date" />
+
+			<field name="cm:name" label="Name" />
+			
+			<field name="psdoc:activity" label="Activity" />
+
+			<field name="psdoc:subActivity" label="Sub Activity" />
+
+			<field name="psdoc:type" label="Document Type" />
+
+			<field name="psdoc:clientName" label="Client Name" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" />
+
+			<field name="psdoc:centralID" label="Central Person ID" format="number" />
+
+			<field name="psdoc:memberRecordID" label="Member Record ID"
+				format="number" />
+
+			<field name="psdoc:firstName" label="First Name" />
+
+			<field name="psdoc:surname" label="Surname" />
+
+			<field name="psdoc:dob" label="Date Of Birth" format="date" />
+
+			<field name="psdoc:nino" label="NI Number" />
+
+			<field name="psdoc:department" label="PS department" />
+		</finalSearchStage>
+	</search>
+	
+	<!-- ************************************************************************* -->
+	<!-- ********************* ADMIN MEMBER DOCUMENTS (ALL) ********************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-admin-member-documents" label="Admin Member Documents"
+		description="Search for admin member documents" searchType="twoSearchStage">
+
+		<form label="Member Search" description="Search for members"
+			horizontalOrSeparator="false" verticalOrSeparator="true"
+			nextSearchStage="stageOne" resultingFormId="Person search resulting form"
+			url="/external/GetPersonDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="DatabaseMemberID" label="Database ID" description="Database ID Field"
+				fieldPosition="upLeft" fieldType="int" show="true" submit="true"
+				fillUnique="true" />
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="downLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="Surname" label="Surname" description="Surname Field"
+				fieldPosition="downLeft" />
+
+			<field name="FirstName" label="First Name" descriptionId="First Name Field"
+				fieldPosition="downLeft" />
+
+			<field name="NINumber" label="NI Number" description="Ni Number Field"
+				fieldPosition="downLeft" />
+
+			<field name="DateOfBirth" label="Date of Birth" description="Date of Birth Field"
+				fieldPosition="downLeft" fieldType="date" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" show="false" submitValue="null" />
+		</form>
+
+		<searchStage id="stageOne" label="Select a person: "
+			description="Select a person Table" nextSearchStage="stageTwo"
+			url="/external/GetMemberDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="ClientName" label="Client Name" show="true"
+				format="text" sortable="true" submit="true" submitValue="null" />
+
+			<field name="FirstName" label="First name" sortable="true"
+				submitValue="null" />
+
+			<field name="Surname" label="Surname" submitValue="null" />
+
+			<field name="NINumber" label="NI Number" submitValue="null" />
+
+			<field name="DateOfBirth" label="Date Of Birth" format="date"
+				sortable="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" label="Central Member record ID"
+				format="number" />
+
+			<field name="BenefitStatus" show="false" submit="false" />
+
+			<field name="BenefitSubStatus" show="false" submit="false" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="DatabaseMemberID" show="false" format="number"
+				submitValue="null" />
+
+			<field name="DateJoinedScheme" show="false" format="date"
+				submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="Admin" />
+
+		</searchStage>
+
+		<searchStage id="stageTwo" label="Please select a record: "
+			description="Please select a record Table" url="/psdoc/search/ps-admin-member-documents"
+			urlType="multipleParameters">
+
+			<field name="SchemeName" label="Scheme Name" submit="false" />
+
+			<field name="DateJoinedScheme" label="Date Joined Scheme"
+				format="date" submit="false" />
+
+			<field name="BenefitStatus" label="Benefit Status" submit="false" />
+
+			<field name="BenefitSubStatus" label="Benefit Sub-Status"
+				submit="false" />
+
+			<field name="DatabaseMemberID" label="Database Member ID"
+				format="number" />
+
+			<field name="CentralMemberRecordID" show="false" format="number" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="ClientName" show="false" submit="false" />
+
+			<field name="DateOfBirth" show="false" format="date" submit="false" />
+
+			<field name="FirstName" show="false" submit="false" />
+
+			<field name="NINumber" show="false" submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeType" show="false" submit="false" />
+
+			<field name="Surname" show="false" submit="false" />
+		</searchStage>
+
+		<resultingForm id="Person search resulting form" label="Member Details">
+
+			<field name="ClientName" label="Client Name" show="true"
+				fieldPosition="upLeft" />
+
+			<field name="SchemeName" label="Scheme Name" />
+
+			<field name="DatabaseMemberID" label="Database ID" />
+
+			<field name="Surname" label="Surname" />
+
+			<field name="FirstName" label="First Name" />
+
+			<field name="NINumber" label="NI Number" />
+
+		</resultingForm>
+
+		<secondForm>
+			<field name="Activity" label="Activity" description="Activity Field"
+				fieldPosition="upLeft" fieldType="select" submit="true" show="true"
+				url="/external/GetAdminMemberActivitiesForSchemeName">
+				<option id="" label="Please select an activity..." />
+			</field>
+
+			<field name="SubActivity" label="Sub-Activity" description="Sub-Activity Field"
+				fieldType="select"
+				url="/external/GetSubActivitiesForMemberActivityForSchemeName?activity="
+				fillAfter="Activity">
+				<option id="" label="Please select a sub-activity..." />
+			</field>
+
+			<field name="DocumentType" label="Document type" description="Document Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetAdminMemberDocumentTypes">
+				<option id="" label="Please select a document type..." />
+			</field>
+
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+
+			<field name="WebDocument" label="WebDocument?" description="Web Document? Field"
+				fieldType="select">
+				<option id="" label="Please select true/false" />
+				<option id="true" />
+				<option id="false" />
+			</field>
+
+			<field name="WebDocumentType" label="Web Document Type"
+				description="Web Document Type Field" fieldType="select"
+				url="/external/GetWebDocumentTypes">
+				<option id="" label="Please select a web document type..." />
+			</field>
+		</secondForm>
+
+		<finalSearchStage label="Search Results" description="Search Results">
+
+			<field name="psdoc:activity" label="Activity" show="true"
+				format="text" sortable="true" />
+
+			<field name="psdoc:subActivity" label="Sub Activity" sortable="true" />
+
+			<field name="cm:name" label="Name" sortable="true" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date"
+				sortable="true" />
+
+			<field name="psdoc:type" label="Document Type" sortable="true" />
+
+			<field name="psdoc:clientName" label="Client Name" sortable="true" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" sortable="true" />
+
+			<field name="psdoc:centralID" label="Central Person ID" format="number"
+				sortable="true" />
+
+			<field name="psdoc:memberRecordID" label="Member Record ID"
+				format="number" sortable="true" />
+
+			<field name="psdoc:firstName" label="First Name" sortable="true" />
+
+			<field name="psdoc:surname" label="Surname" sortable="true" />
+
+			<field name="psdoc:dob" label="Date Of Birth" format="date"
+				sortable="true" />
+
+			<field name="psdoc:nino" label="NI Number" sortable="true" />
+
+			<field name="psdoc:webDoc" label="Web Doc?" sortable="true" />
+
+			<field name="psdoc:webDocType" label="Web Document" sortable="true" />
+		</finalSearchStage>
+	</search>
+
+
+
+	<!-- ************************************************************************* -->
+	<!-- ********************* SCHEME DOCUMENT SEARCH *************************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-admin-scheme-documents" label="Admin Scheme Documents"
+		description="Search for scheme documents" searchType="noSearchStage">
+
+		<form label="Scheme Search" horizontalOrSeparator="false"
+			verticalOrSeparator="false" url="/psdoc/search/ps-admin-scheme-documents"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="SchemeName" label="Scheme Name" description="Scheme Name Field"
+				fieldType="select" show="true"
+				url="/external/GetSchemeNamesForClient?clientName=" fillAfter="ClientName"
+				responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+
+			<field name="Activity" label="Activity" description="Activity Field"
+				fieldType="select" submit="true" show="true"
+				url="/external/GetAdminSchemeActivitiesForSchemeName">
+				<option id="" label="Please select an activity..." />
+			</field>
+
+			<field name="SubActivity" label="Sub-Activity" description="Sub-Activity Field"
+				fieldType="select" url="/external/GetSubActivitiesForActivityForSchemeName?activity="
+				fillAfter="Activity">
+				<option id="" label="Please select a sub-activity..." />
+			</field>
+
+			<field name="DocumentType" label="Document type" description="Document Type Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetAdminSchemeDocumentTypes">
+				<option id="" label="Please select a document type..." />
+			</field>
+
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</form>
+
+		<finalSearchStage label="Search results"
+			description="Results from scheme document search">
+
+			<field name="psdoc:activity" label="Activity" />
+
+			<field name="psdoc:subActivity" label="Sub Activity" />
+
+			<field name="cm:name" label="Name" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date" />
+
+			<field name="psdoc:type" label="Document Type" />
+
+			<field name="psdoc:clientName" label="Client Name" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" />
+
+		</finalSearchStage>
+	</search>
+	
+	<!-- ************************************************************************* -->
+	<!-- ********************* CASHIERING MEMBER DOCUMENTS (ALL) ***************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-cashiering-member-documents" label="Cashiering Member Documents"
+		description="Search for cashiering member documents" searchType="twoSearchStage">
+
+		<form label="Member Search" description="Search for members"
+			horizontalOrSeparator="false" verticalOrSeparator="true"
+			nextSearchStage="stageOne" resultingFormId="Person search resulting form"
+			url="/external/GetPersonDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="DatabaseMemberID" label="Database ID" description="Database ID Field"
+				fieldPosition="upLeft" fieldType="int" show="true" submit="true"
+				fillUnique="true" />
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="downLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="Surname" label="Surname" description="Surname Field"
+				fieldPosition="downLeft" />
+
+			<field name="FirstName" label="First Name" descriptionId="First Name Field"
+				fieldPosition="downLeft" />
+
+			<field name="NINumber" label="NI Number" description="Ni Number Field"
+				fieldPosition="downLeft" />
+
+			<field name="DateOfBirth" label="Date of Birth" description="Date of Birth Field"
+				fieldPosition="downLeft" fieldType="date" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" show="false" submitValue="null" />
+		</form>
+
+		<searchStage id="stageOne" label="Select a person: "
+			description="Select a person Table" nextSearchStage="stageTwo"
+			url="/external/GetMemberDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="ClientName" label="Client Name" show="true"
+				format="text" sortable="true" submit="true" submitValue="null" />
+
+			<field name="FirstName" label="First name" sortable="true"
+				submitValue="null" />
+
+			<field name="Surname" label="Surname" submitValue="null" />
+
+			<field name="NINumber" label="NI Number" submitValue="null" />
+
+			<field name="DateOfBirth" label="Date Of Birth" format="date"
+				sortable="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" label="Central Member record ID"
+				format="number" />
+
+			<field name="BenefitStatus" show="false" submit="false" />
+
+			<field name="BenefitSubStatus" show="false" submit="false" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="DatabaseMemberID" show="false" format="number"
+				submitValue="null" />
+
+			<field name="DateJoinedScheme" show="false" format="date"
+				submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="Admin" />
+
+		</searchStage>
+
+		<searchStage id="stageTwo" label="Please select a record: "
+			description="Please select a record Table" url="/psdoc/search/ps-cashiering-member-documents"
+			urlType="multipleParameters">
+
+			<field name="SchemeName" label="Scheme Name" submit="false" />
+
+			<field name="DateJoinedScheme" label="Date Joined Scheme"
+				format="date" submit="false" />
+
+			<field name="BenefitStatus" label="Benefit Status" submit="false" />
+
+			<field name="BenefitSubStatus" label="Benefit Sub-Status"
+				submit="false" />
+
+			<field name="DatabaseMemberID" label="Database Member ID"
+				format="number" />
+
+			<field name="CentralMemberRecordID" show="false" format="number" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="ClientName" show="false" submit="false" />
+
+			<field name="DateOfBirth" show="false" format="date" submit="false" />
+
+			<field name="FirstName" show="false" submit="false" />
+
+			<field name="NINumber" show="false" submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeType" show="false" submit="false" />
+
+			<field name="Surname" show="false" submit="false" />
+		</searchStage>
+
+		<resultingForm id="Person search resulting form" label="Member Details">
+
+			<field name="ClientName" label="Client Name" />
+
+			<field name="SchemeName" label="Scheme Name" />
+
+			<field name="DatabaseMemberID" label="Database ID" />
+
+			<field name="Surname" label="Surname" />
+
+			<field name="FirstName" label="First Name" />
+
+			<field name="NINumber" label="NI Number" />
+
+		</resultingForm>
+
+		<secondForm>
+		
+			<field name="PaymentDate" nameFrom="PaymentDateFrom" nameTo="PaymentDateTo"
+				label="Payment date" description="Payment date Field" fieldType="daterange" />
+
+			<field name="PaymentAmount" label="Payment Amount" description="Payment amount field"
+				fieldType="float" fillUnique="true" fillFieldName="SchemeType"
+				fillFieldValue="Cashiering" />
+				
+			<field name="Payee" label="Payee" description="Payee field"
+				fieldType="string" fillUnique="true" fillFieldName="SchemeType"
+				fillFieldValue="Cashiering" />
+				
+			<field name="DocumentType" label="Document type" description="Document Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetCashieringDocumentTypes">
+				<option id="" label="Please select a document type..." />
+			</field>
+
+			<field name="PaymentType" label="Payment type" description="Payment Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetCashieringPaymentTypes?cashieringDocumentType="
+				fillAfter="DocumentType">
+				<option id="" label="Please select a payment type..." />
+			</field>
+			
+			<field name="DocumentName" label="Document Name" description="Document Name Field"
+				fieldType="string" />
+
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+
+		</secondForm>
+
+		<finalSearchStage label="Search Results" description="Search Results">
+
+			<field name="psdoc:type" label="Document Type" show="true"
+				format="text" sortable="true" />
+
+			<field name="psdoc:paymentType" label="Payment Type" sortable="true" />
+
+			<field name="cm:name" label="Name" sortable="true" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date"
+				sortable="true" />
+				
+			<field name="psdoc:paymentDate" label="Payment Date" format="date"
+				sortable="true" />
+				
+			<field name="psdoc:paymentAmount" label="Payment Amount" sortable="true" />
+			
+			<field name="psdoc:payee" label="Payee" sortable="true" />
+
+			<field name="psdoc:clientName" label="Client Name" sortable="true" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" sortable="true" />
+
+			<field name="psdoc:centralID" label="Central Person ID" format="number"
+				sortable="true" />
+
+			<field name="psdoc:memberRecordID" label="Member Record ID"
+				format="number" sortable="true" />
+
+			<field name="psdoc:firstName" label="First Name" sortable="true" />
+
+			<field name="psdoc:surname" label="Surname" sortable="true" />
+
+			<field name="psdoc:dob" label="Date Of Birth" format="date"
+				sortable="true" />
+
+			<field name="psdoc:nino" label="NI Number" sortable="true" />
+
+		</finalSearchStage>
+	</search>
+	
+    <!-- ************************************************************************* -->
+	<!-- ********************* CASHIERING SCHEME DOCUMENTS (ALL) ***************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-cashiering-scheme-documents" label="Cashiering Scheme Documents"
+		description="Search for cashiering scheme documents" searchType="noSearchStage">
+		
+		<form label="Search for Admin Scheme Control Documents" horizontalOrSeparator="false"
+			verticalOrSeparator="false" url="/psdoc/search/ps-cashiering-scheme-documents"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="SchemeName" label="Scheme Name" description="Scheme Name Field"
+				fieldType="select" url="/external/GetSchemeNamesForClient?clientName=" 
+				fillAfter="ClientName" responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+			
+			<field name="DocumentType" label="Document type" description="Document Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetCashieringDocumentTypes">
+				<option id="" label="Please select a document type..." />
+			</field>
+			
+			<field name="PaymentType" label="Payment type" description="Payment Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetCashieringPaymentTypes?cashieringDocumentType="
+				fillAfter="DocumentType">
+				<option id="" label="Please select a payment type..." />
+			</field>
+			
+			<field name="PaymentDate" nameFrom="PaymentDateFrom" nameTo="PaymentDateTo"
+				label="Payment date" description="Payment date Field" fieldType="daterange" />
+
+			<field name="PaymentAmount" label="Payment Amount" description="Payment amount field"
+				fieldType="float" fillUnique="true" fillFieldName="SchemeType"
+				fillFieldValue="Cashiering" />
+				
+			<field name="Payee" label="Payee" description="Payee field"
+				fieldType="string" fillUnique="true" fillFieldName="SchemeType"
+				fillFieldValue="Cashiering" />
+			
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</form>
+
+		<finalSearchStage label="Search results"
+			description="Results from cashier schema search">
+
+			<field name="psdoc:type" label="Document Type" show="true"
+				format="text" sortable="true" />
+
+			<field name="psdoc:paymentType" label="Payment Type" sortable="true" />
+
+			<field name="cm:name" label="Name" sortable="true" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date"
+				sortable="true" />
+				
+			<field name="psdoc:paymentDate" label="Payment Date" format="date"
+				sortable="true" />
+				
+			<field name="psdoc:paymentAmount" label="Payment Amount" sortable="true" />
+			
+			<field name="psdoc:payee" label="Payee" sortable="true" />
+
+			<field name="psdoc:clientName" label="Client Name" sortable="true" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" sortable="true" />
+
+		</finalSearchStage>
+	</search>
+	
+	<!-- ************************************************************************* -->
+	<!-- *********************** PAYROLL MEMBER DOCUMENTS ************************ -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-payroll-member-documents" label="Payroll Member Documents"
+		description="Search for payroll member documents" searchType="twoSearchStage">
+
+		<form label="Member Search" description="Search for members"
+			horizontalOrSeparator="false" verticalOrSeparator="true"
+			nextSearchStage="stageOne" resultingFormId="Person search resulting form"
+			url="/external/GetPersonDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="DatabaseMemberID" label="Database ID" description="Database ID Field"
+				fieldPosition="upLeft" fieldType="int" show="true" submit="true"
+				fillUnique="true" />
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="downLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+			
+			<field name="SchemeName" label="Scheme Name" description="Scheme Name Field"
+				fieldPosition="downLeft" fieldType="select" url="/external/GetSchemeNamesForClient?schemeType=Payroll&amp;clientName=" 
+				fillAfter="ClientName" responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+
+			<field name="Surname" label="Surname" description="Surname Field"
+				fieldPosition="downLeft" />
+
+			<field name="FirstName" label="First Name" descriptionId="First Name Field"
+				fieldPosition="downLeft" />
+
+			<field name="NINumber" label="NI Number" description="Ni Number Field"
+				fieldPosition="downLeft" />
+
+			<field name="DateOfBirth" label="Date of Birth" description="Date of Birth Field"
+				fieldPosition="downLeft" fieldType="date" />
+			
+			<field name="SchemeType" show="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" show="false" submitValue="null" />
+		</form>
+
+		<searchStage id="stageOne" label="Select a person: "
+			description="Select a person Table" nextSearchStage="stageTwo"
+			url="/external/GetMemberDetails?memberTypeString=" urlType="jsonObject">
+
+			<field name="ClientName" label="Client Name" show="true"
+				format="text" sortable="true" submit="true" submitValue="null" />
+
+			<field name="FirstName" label="First name" sortable="true"
+				submitValue="null" />
+
+			<field name="Surname" label="Surname" submitValue="null" />
+
+			<field name="NINumber" label="NI Number" submitValue="null" />
+
+			<field name="DateOfBirth" label="Date Of Birth" format="date"
+				sortable="false" submitValue="null" />
+
+			<field name="CentralMemberRecordID" label="Central Member record ID"
+				format="number" />
+
+			<field name="BenefitStatus" show="false" submit="false" />
+
+			<field name="BenefitSubStatus" show="false" submit="false" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="DatabaseMemberID" show="false" format="number"
+				submitValue="null" />
+
+			<field name="DateJoinedScheme" show="false" format="date"
+				submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeName" show="false" submitValue="null" />
+
+			<field name="SchemeType" show="false" submitValue="Admin" />
+
+		</searchStage>
+
+		<searchStage id="stageTwo" label="Please select a record: "
+			description="Please select a record Table" url="/psdoc/search/ps-payroll-member-documents"
+			urlType="multipleParameters">
+
+			<field name="SchemeName" label="Scheme Name" submit="false" />
+
+			<field name="DateJoinedScheme" label="Date Joined Scheme"
+				format="date" submit="false" />
+
+			<field name="BenefitStatus" label="Benefit Status" submit="false" />
+
+			<field name="BenefitSubStatus" label="Benefit Sub-Status"
+				submit="false" />
+
+			<field name="DatabaseMemberID" label="Database Member ID"
+				format="number" />
+
+			<field name="CentralMemberRecordID" show="false" format="number" />
+
+			<field name="ClientID" show="false" format="number" submit="false" />
+
+			<field name="ClientName" show="false" submit="false" />
+
+			<field name="DateOfBirth" show="false" format="date" submit="false" />
+
+			<field name="FirstName" show="false" submit="false" />
+
+			<field name="NINumber" show="false" submit="false" />
+
+			<field name="PenScopeSchemeID" show="false" format="number"
+				submit="false" />
+
+			<field name="SchemeID" show="false" format="number" submit="false" />
+
+			<field name="SchemeType" show="false" submit="false" />
+
+			<field name="Surname" show="false" submit="false" />
+		</searchStage>
+
+		<resultingForm id="Person search resulting form" label="Member Details">
+
+			<field name="ClientName" label="Client Name" show="true"
+				fieldPosition="upLeft" />
+
+			<field name="SchemeName" label="Scheme Name" />
+
+			<field name="DatabaseMemberID" label="Database ID" />
+
+			<field name="Surname" label="Surname" />
+
+			<field name="FirstName" label="First Name" />
+
+			<field name="NINumber" label="NI Number" />
+
+		</resultingForm>
+
+		<secondForm>
+			<field name="PayrollSubActivity" label="Payroll Sub-Activity" description="Payroll Sub-Activity Field"
+				fieldType="select"
+				url="/external/GetSubActivitiesForActivityForSchemeName?activity=Payroll+Member+Work">
+				<option id="" label="Please select a sub-activity..." />
+			</field>
+
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</secondForm>
+
+		<finalSearchStage label="Search Results" description="Search Results">
+
+			<field name="psdoc:activity" label="Activity" show="true"
+				format="text" sortable="true" />
+
+			<field name="psdoc:subActivity" label="Sub Activity" sortable="true" />
+
+			<field name="cm:name" label="Name" sortable="true" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date"
+				sortable="true" />
+
+			<field name="psdoc:clientName" label="Client Name" sortable="true" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" sortable="true" />
+			
+			<field name="psdoc:centralID" label="Central Person ID" format="number"
+				sortable="true" />
+			
+			<field name="psdoc:memberRecordID" label="Member Record ID"
+				format="number" sortable="true" />
+			
+			<field name="psdoc:firstName" label="First Name" sortable="true" />
+			
+			<field name="psdoc:surname" label="Surname" sortable="true" />
+			
+			<field name="psdoc:dob" label="Date Of Birth" format="date"
+				sortable="true" />
+				
+			<field name="psdoc:nino" label="NI Number" sortable="true" />
+			
+		</finalSearchStage>
+	</search>
+
+	<!-- ************************************************************************* -->
+	<!-- ****************** SCHEME DOCUMENT SEARCH (PAYROLL)********************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-payroll-scheme-documents" label="Payroll Scheme Documents"
+		description="Search for scheme documents" searchType="noSearchStage">
+
+		<form label="Payroll Scheme Search" horizontalOrSeparator="false"
+			verticalOrSeparator="false" url="/psdoc/search/ps-payroll-scheme-documents"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="SchemeName" label="Scheme Name" description="Scheme Name Field"
+				fieldType="select" show="true"
+				url="/external/GetSchemeNamesForClient?schemeType=Payroll&amp;clientName=" fillAfter="ClientName"
+				responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+
+			<field name="SubActivity" label="Sub-Activity" description="Sub-Activity Field"
+				fieldType="select" url="/external/GetSubActivitiesForActivityForSchemeName?activity=Payroll+Scheme+Work">
+				<option id="" label="Please select a sub-activity..." />
+			</field>
+
+			<field name="PeriodMonth" label="Period Month" description="Period Month Field"
+				fieldPosition="upLeft" fieldType="select">
+				<option id="" label="Please select a period..." />
+				<option id="P1" />
+				<option id="P2" />
+				<option id="P3" />
+				<option id="P4" />
+				<option id="P5" />
+				<option id="P6" />
+				<option id="P7" />
+				<option id="P8" />
+				<option id="P9" />
+				<option id="P10" />
+				<option id="P11" />
+				<option id="P12" />
+			</field>
+			
+			<field name="PeriodYear" label="Period Year" description="Period Year Field"
+				 fieldType="select">
+				<option id="" label="Please select a year..." />
+				<option id="2015" />
+				<option id="2016" />
+				<option id="2017" />
+				<option id="2018" />
+			</field>
+
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</form>
+
+		<finalSearchStage label="Search results"
+			description="Results from scheme document search">
+
+			<field name="psdoc:activity" label="Activity" />
+
+			<field name="psdoc:subActivity" label="Sub Activity" />
+
+			<field name="cm:name" label="Name" />
+
+			<field name="psdoc:docDate" label="Document Date" format="date" />
+
+			<field name="psdoc:periodMonth" label="Period Month" />
+
+			<field name="psdoc:periodYear" label="Period Year" />
+			
+			<field name="psdoc:clientName" label="Client Name" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" />
+
+		</finalSearchStage>
+	</search>	
+	
+	<!-- ************************************************************************* -->
+	<!-- *************** ADMIN MEMBER SCHEME CONTROL DOCUMENTS ******************* -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-admin-scheme-control-documents" label="Admin Scheme Control Documents"
+		description="Search for Admin Scheme Control Documents" searchType="noSearchStage">
+
+		<form label="Search for Admin Scheme Control Documents" horizontalOrSeparator="false"
+			verticalOrSeparator="false" url="/psdoc/search/ps-admin-scheme-control-documents"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="SchemeControlAdminScheme" label="Scheme Name" description="Scheme Name Field"
+				fieldType="select" url="/external/GetSchemeNamesForClient?schemeType=Admin&amp;clientName=" 
+				fillAfter="ClientName" responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+			
+			<field name="DocumentType" label="Document type" description="Document Type Field"
+				fieldPosition="upLeft" fieldType="select"
+				url="/external/GetAdminSchemeControlDocumentTypes">
+				<option id="" label="Please select a document type..." />
+			</field>
+			
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</form>
+
+		<finalSearchStage label="Search results"
+			description="Results from admin scheme control documents search">
+
+			<field name="cm:name" label="Name" />
+			
+			<field name="psdoc:docDate" label="Document Date" format="date" />
+			
+			<field name="psdoc:type" label="Document Type" />
+			
+			<field name="psdoc:clientName" label="Client Name" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" />
+			
+			<field name="psdoc:microficheSurname" label="Surname" />
+
+			<field name="psdoc:microficheInitials" label="Initials" />
+			
+			<field name="psdoc:microficheReference" label="Reference" />
+		</finalSearchStage>
+	</search>
+
+	<!-- ************************************************************************* -->
+	<!-- ********************* ADMIN MEMBER MICROFICHE DOCUMENTS ***************** -->
+	<!-- ************************************************************************* -->
+
+	<search id="ps-admin-member-microfiche-documents" label="Admin Microfiche Documents"
+		description="Search for Admin Microfiche Documents" searchType="noSearchStage">
+
+		<form label="Search for Admin Microfiche Documents" horizontalOrSeparator="false"
+			verticalOrSeparator="false" url="/psdoc/search/ps-admin-member-microfiche-documents"
+			urlType="multipleParameters">
+
+			<field name="ClientName" label="Client Name" description="Client Name Field"
+				fieldPosition="upLeft" fieldType="select" url="/external/GetClientNames"
+				responseIdField="ClientName" responseLabelField="ClientName">
+				<option id="" label="Please select a client..." />
+			</field>
+
+			<field name="SchemeName" label="Scheme Name" description="Scheme Name Field"
+				fieldType="select" url="/external/GetSchemeNamesForClient?schemeType=Admin&amp;clientName=" 
+				fillAfter="ClientName" responseIdField="SchemeName" responseLabelField="SchemeName">
+				<option id="" label="Please select a scheme..." />
+			</field>
+			
+			<field name="MicroficheSurname" label="Surname" description="Surname Field"/>
+			
+			<field name="MicroficheInitials" label="Initials" description="Initials Field"/>
+			
+			<field name="MicroficheReference" label="Reference" description="Reference Field"/>
+			
+			<field name="DocumentDate" nameFrom="DocumentDateFrom" nameTo="DocumentDateTo"
+				label="Document date" description="Document date Field" fieldType="daterange" />
+		</form>
+
+		<finalSearchStage label="Search results"
+			description="Results from member microfiche documents search">
+
+			<field name="cm:name" label="Name" />
+			
+			<field name="psdoc:docDate" label="Document Date" format="date" />
+			
+			<field name="psdoc:type" label="Document Type" />
+			
+			<field name="psdoc:clientName" label="Client Name" />
+
+			<field name="psdoc:schemeName" label="Scheme Name" />
+			
+			<field name="psdoc:microficheSurname" label="Surname" />
+
+			<field name="psdoc:microficheInitials" label="Initials" />
+			
+			<field name="psdoc:microficheReference" label="Reference" />
+		</finalSearchStage>
+	</search>
+	
+</config>

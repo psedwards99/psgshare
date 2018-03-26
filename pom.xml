@@ -103,12 +103,12 @@
                         <moduleDependency>
                             <groupId>com.activiti</groupId>
                             <artifactId>alfresco-connector-share</artifactId>
-                            <version>1.6.4</version>
+                            <version>1.7.0</version>
                             <type>amp</type>
                         </moduleDependency>
 
                         <moduleDependency>
-                            <groupId>org.sharextras</groupId>
+                            <groupId>org.shareextras</groupId>
                             <artifactId>javascript-console-share</artifactId>
                             <version>0.7-SNAPSHOT</version>
                             <type>amp</type>

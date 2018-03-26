@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Searches</shortname>
+    <description>Component used to list searches</description>
+    <family>user-dashlet</family>
+    <url>/com/puntersouthall/searches</url>
+</webscript> 
